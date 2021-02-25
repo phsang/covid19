@@ -135,8 +135,12 @@ $activeColor: #00809D;
     a {
       color: #444;
       display: inline-block;
+      max-width: 180px;
+      overflow: hidden;
       padding: 6px 0;
       text-decoration: none;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 }

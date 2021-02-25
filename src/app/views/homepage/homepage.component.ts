@@ -53,7 +53,7 @@ export class HomepageComponent implements OnInit {
   }
 
   async chooseCountry($event) {
-    let _listCountry = document.querySelectorAll(".country_item")
+    let _listCountry = document.querySelectorAll(".country_item");
     for (let i = 0; i < _listCountry.length; i++) {
       _listCountry[i].classList.remove('active');
     }
@@ -72,14 +72,11 @@ export class HomepageComponent implements OnInit {
     let dateFrom = new Date();
     dateTo.setUTCHours(0, 0, 0, 0);
     dateFrom.setUTCHours(0, 0, 0, 0);
-    console.log(this._numberDate);
-    dateFrom.setDate(dateTo.getDate() - this._numberDate);
+    dateFrom.setDate(dateTo.getDate() - (this._numberDate - 1));
     let strDateFrom = dateFrom.toISOString();
     let strDateTo = dateTo.toISOString();
-    
-    // var dateString = date.toISOString().split('T')[0];
+
     this._country = await this.covidController.getCountry(country_slug, strDateFrom, strDateTo);
-    this._country[this._country.length - 1].Date = new Date(this._country[0].Date);
 
     this.drawMapOfCase();
   }
@@ -100,10 +97,9 @@ export class HomepageComponent implements OnInit {
     let mapWidth = c.width - 45;
     let mapHeight = c.height - 12;
     let barWidth = mapWidth / this._numberDate;
-    var dataChart = [];
-    for (let i = 0; i < this._country.length; i++) {
-      dataChart.push(this._country[i].Cases);
-    }
+    let dataChart = [];
+    dataChart = this._country.map(x => x.Cases);
+
     let maxDataChart = dataChart[dataChart.length - 1];
     let stepHeight = mapHeight / (maxDataChart - dataChart[0]);
 
