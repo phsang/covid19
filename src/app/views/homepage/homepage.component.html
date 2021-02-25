@@ -1,0 +1,57 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="coronavirus_pandemic">
+      <h1>COVID-19 CORONAVIRUS PANDEMIC</h1>
+      <div class="row">
+        <div class="col col-3">
+          <div class="covid_case_info">
+            <h2 class="covid_info_ttl">General Information</h2>
+            <span class="last_update">Last updated: {{_global?.Global.Date}}</span>
+            <p class="confirm"><span>New Confirmed:</span> {{_global?.Global.NewConfirmed}}</p>
+            <p class="confirm"><span>Total Confirmed:</span> {{_global?.Global.TotalConfirmed}}</p>
+            <p class="recover"><span>New Recovered:</span> {{_global?.Global.NewRecovered}}</p>
+            <p class="recover"><span>Total Recovered:</span> {{_global?.Global.TotalRecovered}}</p>
+            <p class="deaths"><span>New Deaths:</span> {{_global?.Global.NewDeaths}}</p>
+            <p class="deaths"><span>Total Deaths:</span> {{_global?.Global.TotalDeaths}}</p>
+          </div>
+        </div>
+        <div class="col col-3">
+          <h2 class="covid_info_ttl">Countries</h2>
+          <div class="by_country">
+            <div class="search_country">
+              <label for="search">Search: </label>
+              <input type="text" id="search" class="frm_control" (keyup)="searchCountry($event)">
+            </div>
+            <ul class="filter_by_country" id="filter_by_country" (click)="chooseCountry($event)">
+              <li [attr.class]="isFirst ? 'country_item active' : 'country_item'" *ngFor="let country of _global?.Countries; index as i; first as isFirst">
+                <a href="javascript:void(0)" [attr.data-slug]="country.Slug" [attr.data-country]="country.Country">{{country.Country}}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col col-6">
+          <h2 class="covid_info_ttl">General Information about {{_currentCountry}}</h2>
+          <div class="general_country">
+            <div class="general_info">
+              <span class="last_update">Last updated: {{_country?_country[_country.length - 1].Date:''}}</span>
+              <p><span>Country:</span> {{_country?_country[0].Country:''}}</p>
+              <p><span>Cases:</span> {{_country?_country[_country.length - 1].Cases:''}}</p>
+              <p><span>Status:</span> {{_country?_country[_country.length - 1].Status:''}}</p>
+            </div>
+            <div class="general_chart">
+              <span class="chart_ttl">Map of cases (last {{_numberDate}} days)</span>
+              <div class="covid_chart">
+                <div class="set_number_date">
+                  <label for="number">Number of date (10-365):</label>
+                  <input type="number" class="frm_control" id="number" min="10" value="30" (change)="updateNumberDate($event)">
+                </div>
+                <canvas class="covid_chart_map" id="covid_chart_map">
+                  Your browser does not support the HTML5 canvas tag.</canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

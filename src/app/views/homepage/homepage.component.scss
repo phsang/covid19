@@ -1,0 +1,221 @@
+$activeColor: #00809D;
+
+@media screen and (max-width: 575px) {
+  .container { width: 100%; }
+}
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .container { width: 540px; }
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .container { width: 720px; }
+}
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  .container { width: 960px; }
+}
+@media screen and (min-width: 1200px) and (max-width: 1399px) {
+  .container { width: 1140px; }
+}
+@media screen and (min-width: 1400px) {
+  .container { width: 1320px; }
+}
+
+.wrapper {
+  background: rgb(239, 239, 239);
+  min-height: 100vh;
+  width: 100%;
+}
+
+.container {
+  margin: auto;
+}
+
+.row {
+  align-items: flex-start;
+  display: flex;
+  margin-left: -5px;
+  width: calc(100% + 10px);
+}
+
+.col {
+  margin: 0 5px;
+}
+
+.col-1 { width: 8.33333%;}
+.col-2 { width: 16.66666%;}
+.col-3 { width: 25%;}
+.col-4 { width: 33.33333%;}
+.col-5 { width: 41.66666%;}
+.col-6 { width: 50%;}
+.col-7 { width: 58.33333%;}
+.col-8 { width: 66.66666%;}
+.col-9 { width: 75%;}
+.col-10 { width: 83.33333%;}
+.col-11 { width: 91.66666%;}
+.col-12 { width: 100%;}
+
+.coronavirus_pandemic {
+  margin: auto;
+  max-width: 100%;
+  padding: 20px;
+  width: 1200px;
+  .col {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px #ccc;
+    padding: 15px;
+    .covid_info_ttl {
+      background: rgb(230, 230, 230);
+      border-bottom: 1px solid rgb(190, 190, 190);
+      box-sizing: border-box;
+      margin: -15px 0 10px -15px;
+      padding: 10px 15px;
+      width: calc(100% + 30px);
+    }
+  }
+}
+
+.filter_by_country {
+  counter-reset: country-counter;
+  height: 345px;
+  list-style: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0 15px 0 0;
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(240, 240, 240, .5);
+    border-radius: 2px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 2px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  li {
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    display: flex;
+    margin: 3px 0;
+    padding: 0 12px;
+    position: relative;
+    &:not(.fil):before {
+      content: counter(country-counter) ". ";
+      counter-increment: country-counter;
+    }
+    &.fil {
+      display: none;
+    }
+    &.active,
+    &:hover {
+      border-color: $activeColor;
+      color: $activeColor;
+      a {
+        color: $activeColor;
+        flex: 1;
+        &:after {
+          background: $activeColor;
+          border-radius: 50%;
+          box-sizing: border-box;
+          content: "";
+          height: 8px;
+          position: absolute;
+          right: 10px;
+          top: calc(50% - 4px);
+          transition: .4s;
+          width: 8px;
+        }
+      }
+    }
+    a {
+      color: #444;
+      display: inline-block;
+      padding: 6px 0;
+      text-decoration: none;
+    }
+  }
+}
+.search_country {
+  align-items: center;
+  display: flex;
+}
+input.frm_control {
+  border: 1px solid #bbb;
+  border-radius: 3px;
+  box-sizing: border-box;
+  height: 25px;
+  margin-left: 10px;
+  padding: 2px 10px;
+  width: 100%;
+  &:focus {
+    border-color: #888;
+    outline: none;
+  }
+}
+.covid_case_info {
+  p {
+    margin: 10px 0;
+    span {
+      font-weight: bold;
+    }
+    &:before {
+      border-radius: 50%;
+      content: "";
+      display: inline-block;
+      height: 8px;
+      margin-right: 8px;
+      vertical-align: middle;
+      width: 8px;
+    }
+    &.confirm:before {
+      background: rgb(244, 195, 99);
+    }
+    &.recover:before {
+      background: rgb(96, 187, 105);
+    }
+    &.deaths:before {
+      background: rgb(118, 118, 118);
+    }
+  }
+}
+.general_info {
+  p {
+    margin: 10px 0;
+    span {
+      font-weight: bold;
+    }
+  }
+}
+.set_number_date {
+  align-items: center;
+  display: flex;
+  margin-bottom: 10px;
+  .frm_control {
+    width: 100px;
+  }
+}
+.last_update {
+  color: #666;
+  display: inline-block;
+  font-size: 13px;
+  margin-bottom: 15px;
+}
+.general_chart {
+  border-top: 1px solid #ccc;
+  margin-top: 14px;
+  padding-top: 18px;
+}
+.chart_ttl {
+  color: #666;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.covid_chart {
+  margin-top: 20px;
+}
